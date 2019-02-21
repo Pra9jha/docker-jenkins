@@ -1,28 +1,29 @@
 version: '3.3'
 services:
- db:
-   container_name: postgres
-   image: postgres
-   environment:
-     POSTGRES_USER: postgres
-     POSTGRES_PASSWORD: "12345"
-   ports:
-    - "5432:5432"
-   volumes:
-     - pgdata:/var/lib/postgresql/data/
+ # db:
+ #   container_name: postgres
+ #   image: postgres
+ #   environment:
+ #     POSTGRES_USER: postgres
+ #     POSTGRES_PASSWORD: "12345"
+ #   ports:
+ #    - "5432:5432"
+ #   volumes:
+ #     - pgdata:/var/lib/postgresql/data/
  web:
-  build: .
-  command: bash -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
+  image: djangoproject
+  # build: .
+  command: bash -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8030"
   volumes:
     - .:/usr/src/app
   ports:
-   - "8000:8000"
-  depends_on:
-  - db
-  links:
-  - db:db
-volumes:
-  pgdata:
+   - "8030:8030"
+# depends_on:
+#   - db
+#   links:
+#   - db:db
+# volumes:
+#   pgdata:
 
 
 
